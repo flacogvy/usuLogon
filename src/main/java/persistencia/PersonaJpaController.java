@@ -67,7 +67,7 @@ public class PersonaJpaController implements Serializable {
     }
   }
 
-  public void destroy(int id) throws NonexistentEntityException {
+  public void destroy(Long id) throws NonexistentEntityException {
     EntityManager em = null;
     try {
       em = getEntityManager();

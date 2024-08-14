@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logica.CodTabla;
 import logica.Controladora;
+import logica.Persona;
 import logica.RegPrincipal;
 import logica.Usuario;
 
@@ -34,14 +36,16 @@ public class SrvUsuarios extends HttpServlet {
     
     List<Usuario> lisUsuarios = miControl.getUsuFiltro (strFiltro.toUpperCase());
     
-    /*armar la informacion para repoerte*/
+    /*armar la informacion para reporte*/
     ArrayList<RegPrincipal> lstRegistro = new ArrayList<>() ;
     
     for (Usuario usuTmp : lisUsuarios) {
       String nombre = miControl.getNombrePer(usuTmp.getPer_id());
+      Persona perLocal = miControl.getPersona (usuTmp.getPer_id());
       
       lstRegistro.add(new RegPrincipal (usuTmp.getUsr_id(), usuTmp.getPer_id(), 
-              usuTmp.getUsr_alias(), nombre, usuTmp.getUsr_estado(), usuTmp.getUsr_tipo(),
+              usuTmp.getUsr_alias(), perLocal.getPer_tipdoc(), perLocal.getPer_numcod(),
+              nombre, usuTmp.getUsr_estado(), usuTmp.getUsr_tipo(),
       usuTmp.getUsr_ultlogon()));
       
     }
@@ -58,7 +62,7 @@ public class SrvUsuarios extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    //alta de usuario.
+    //ALTA DE USUARIOS******************
     String tipDoc = request.getParameter("cboTipoDoc");
     String numDoc = request.getParameter("txtNumDoc");
     String nomUsu = request.getParameter("txtNombre");
@@ -69,18 +73,30 @@ public class SrvUsuarios extends HttpServlet {
     String estUsu = request.getParameter("cboEstUser");
     String pasUsu = request.getParameter("txtPassword");
     
-    Usuario miUsu = miControl.creaUsuPer (tipDoc, numDoc, nomUsu, patUsu, matUsu,
-            aliUsu, tipUsu, estUsu, pasUsu);
+    Usuario miUsu = null;
+    String  zMensa  = miControl.creaUsuPer (tipDoc, numDoc, nomUsu, patUsu, matUsu,
+            aliUsu, tipUsu, estUsu, pasUsu, miUsu);
     
     HttpSession miSes = request.getSession();
     if (miUsu == null )  {
-      miSes.setAttribute("txtMensa", "ERR-Error al crear el usuario");
+      miSes.setAttribute("txtMensa", zMensa);
     } else {
       miSes.setAttribute("txtMensa", "EXI-Usuario Creado con Exito");
     }
     
     List<Usuario> listaUsu = miControl.getUsuFiltro("");
-    ArrayList<Usuario> lstUsu = new ArrayList<> (listaUsu);
+    ArrayList<RegPrincipal> lstUsu = new ArrayList<> ();
+    
+    for (Usuario usuTmp : listaUsu) {
+      String nombre = miControl.getNombrePer(usuTmp.getPer_id());
+      Persona perLocal = miControl.getPersona (usuTmp.getPer_id());
+      
+      lstUsu.add(new RegPrincipal (usuTmp.getUsr_id(), usuTmp.getPer_id(), 
+              usuTmp.getUsr_alias(), perLocal.getPer_tipdoc(), perLocal.getPer_numcod(),
+              nombre, usuTmp.getUsr_estado(), usuTmp.getUsr_tipo(),
+      usuTmp.getUsr_ultlogon()));
+      
+    }
     
     miSes.setAttribute("lstUsuarios", lstUsu);
     

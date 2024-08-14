@@ -4,14 +4,18 @@
   <%
     HttpSession sesValidacion = request.getSession();
     String usuValido = (String) sesValidacion.getAttribute("usuLogon");
-    if (usuValido == null) {
+    if (usuValido == null || usuValido.equals("")) {
       response.sendRedirect("logon.jsp");
     } else {
       // todo bien
     }
 
   %>
-
+  <script>
+    function mandar () {
+      document.frmSalir.submit();
+    }
+  </script>
   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="index.html">Gestion de Usuarios</a>
@@ -26,9 +30,11 @@
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#!">Salir</a></li>
+          <li><a class="dropdown-item" href="#">Salir</a></li>
         </ul>
+        
       </li>
     </ul>
   </nav>
@@ -38,10 +44,12 @@
         <div class="sb-sidenav-menu">
           <div class="nav">
             <div class="sb-sidenav-menu-heading">Acciones</div>
-            <a class="nav-link" href="charts.html">
+            <form name="frmSalir" action="SrvSalir" method="GET">
+            <a class="nav-link" href="javascript: mandar ();">
               <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
               Salir
             </a>
+            </form>
           </div>
         </div>
         <div class="sb-sidenav-footer">

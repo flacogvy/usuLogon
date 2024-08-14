@@ -5,6 +5,8 @@ public class RegPrincipal {
   private Long idUsuario; 
   private Long idPersona;
   private String aliasUsu;
+  private String tipoDoc;
+  private String numDoc;
   private String nombreUsu;
   private String estadoUsu; 
   private String tipoUus;
@@ -13,15 +15,21 @@ public class RegPrincipal {
   public RegPrincipal() {
   }
 
-  public RegPrincipal(Long idUsuario, Long idPersona, String aliasUsu, String nombreUsu, String estadoUsu, String tipoUus, String ultLogonUsu) {
+  public RegPrincipal(Long idUsuario, Long idPersona, String aliasUsu, String tipoDoc, 
+          String numDoc, String nombreUsu, String estadoUsu, String tipoUus, 
+          String ultLogonUsu) {
     this.idUsuario = idUsuario;
     this.idPersona = idPersona;
     this.aliasUsu = aliasUsu;
+    this.tipoDoc = tipoDoc;
+    this.numDoc = numDoc;
     this.nombreUsu = nombreUsu;
     this.estadoUsu = estadoUsu;
     this.tipoUus = tipoUus;
     this.ultLogonUsu = ultLogonUsu;
   }
+
+  
 
   public Long getIdUsuario() {
     return idUsuario;
@@ -77,6 +85,22 @@ public class RegPrincipal {
 
   public void setUltLogonUsu(String ultLogonUsu) {
     this.ultLogonUsu = ultLogonUsu;
+  }
+
+  public String getTipoDoc() {
+    return tipoDoc;
+  }
+
+  public void setTipoDoc(String tipoDoc) {
+    this.tipoDoc = tipoDoc;
+  }
+
+  public String getNumDoc() {
+    return numDoc;
+  }
+
+  public void setNumDoc(String numDoc) {
+    this.numDoc = numDoc;
   }
   
   

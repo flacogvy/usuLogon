@@ -57,15 +57,15 @@ public class Persona implements Serializable {
           String per_modcrea, String per_fehomodi, String per_usumodi, 
           String per_modmodi) {
     this.per_id = per_id;
-    this.per_tipdoc = per_tipdoc;
+    this.per_tipdoc = per_tipdoc.toUpperCase();
     this.per_numcod = per_numcod;
-    this.per_nombre = per_nombre;
-    this.per_paterno = per_paterno;
-    this.per_materno = per_materno;
+    this.per_nombre = per_nombre.toUpperCase();
+    this.per_paterno = per_paterno.toUpperCase();
+    this.per_materno = per_materno.toUpperCase();
     this.per_fechnac = per_fechnac;
     this.per_celular = per_celular;
-    this.per_estado = per_estado;
-    this.per_sexo = per_sexo;
+    this.per_estado = per_estado.toUpperCase();
+    this.per_sexo = per_sexo.toUpperCase();
     this.per_fehocrea = per_fehocrea;
     this.per_usucrea = per_usucrea;
     this.per_modcrea = per_modcrea;
@@ -87,7 +87,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_tipdoc(String per_tipdoc) {
-    this.per_tipdoc = per_tipdoc;
+    this.per_tipdoc = per_tipdoc.toUpperCase();
   }
 
   public String getPer_numcod() {
@@ -103,7 +103,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_nombre(String per_nombre) {
-    this.per_nombre = per_nombre;
+    this.per_nombre = per_nombre.toUpperCase();
   }
 
   public String getPer_paterno() {
@@ -111,7 +111,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_paterno(String per_paterno) {
-    this.per_paterno = per_paterno;
+    this.per_paterno = per_paterno.toUpperCase();
   }
 
   public String getPer_materno() {
@@ -119,7 +119,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_materno(String per_materno) {
-    this.per_materno = per_materno;
+    this.per_materno = per_materno.toUpperCase();
   }
 
   public String getPer_fechnac() {
@@ -143,7 +143,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_estado(String per_estado) {
-    this.per_estado = per_estado;
+    this.per_estado = per_estado.toUpperCase();
   }
 
   public String getPer_sexo() {
@@ -151,7 +151,7 @@ public class Persona implements Serializable {
   }
 
   public void setPer_sexo(String per_sexo) {
-    this.per_sexo = per_sexo;
+    this.per_sexo = per_sexo.toUpperCase();
   }
 
   public String getPer_fehocrea() {

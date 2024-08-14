@@ -1,3 +1,4 @@
+D:\Code2024\java\usuLogon\src\main\java\logica\ControlCodTabla.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\exceptions\PreexistingEntityException.java
 D:\Code2024\java\usuLogon\src\main\java\utilesDB\utilGen\EncripCad.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\PersonaJpaController.java
@@ -6,14 +7,17 @@ D:\Code2024\java\usuLogon\src\main\java\persistencia\CodTablaJpaController.java
 D:\Code2024\java\usuLogon\src\main\java\com\mycompany\usulogon\Pruebas.java
 D:\Code2024\java\usuLogon\src\main\java\utilesDB\utilFecha\UtlFecTime.java
 D:\Code2024\java\usuLogon\src\main\java\logica\RegPrincipal.java
+D:\Code2024\java\usuLogon\src\main\java\servlets\SrvSalir.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\UsuarioJpaController.java
 D:\Code2024\java\usuLogon\src\main\java\logica\Persona.java
 D:\Code2024\java\usuLogon\src\main\java\servlets\SrvCargaInfo.java
 D:\Code2024\java\usuLogon\src\main\java\logica\CodTabla.java
 D:\Code2024\java\usuLogon\src\main\java\utilesDB\utilFechFMT\FechFmto.java
 D:\Code2024\java\usuLogon\src\main\java\logica\Controladora.java
+D:\Code2024\java\usuLogon\src\main\java\persistencia\ControlPersisTablas.java
 D:\Code2024\java\usuLogon\src\main\java\servlets\SrvValidar.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\exceptions\IllegalOrphanException.java
+D:\Code2024\java\usuLogon\src\main\java\servlets\SvElimUsuario.java
 D:\Code2024\java\usuLogon\src\main\java\utilesDB\utilFecha\UtlFechas.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\exceptions\NonexistentEntityException.java
 D:\Code2024\java\usuLogon\src\main\java\persistencia\ControlPersistencia.java

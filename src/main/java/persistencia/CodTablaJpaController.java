@@ -166,5 +166,41 @@ public class CodTablaJpaController implements Serializable {
     }
     return lisResul;
   }
+
+  public String getDescTabla(String cdTablax, String codItemx) {
+    EntityManager manager = getEntityManager();
+    List<CodTabla> lisResul;
+    String descripcion = "";
+    try{
+      CriteriaBuilder cb = manager.getCriteriaBuilder(); //Paso 1
+      CriteriaQuery cqry = manager.getCriteriaBuilder().createQuery(); //Paso 1
+      Root<CodTabla> root = cqry.from(CodTabla.class);
+      cqry.select(root);  //paso 3
+      
+      Predicate pGtCod = cb.equal(root.get("ctaCodigo"), cdTablax);
+      Predicate pGtItm= cb.equal(root.get("ctaOpcion"), codItemx);
+      
+      Predicate pAnd = cb.and(pGtCod, pGtItm);
+      cqry.where(pAnd);
+      
+      Query qry = manager.createQuery(cqry); //Paso 6
+      lisResul = qry.getResultList(); //Paso 6
+      
+      switch (lisResul.size()) {
+        case 0 : 
+          //
+          break;
+        case 1:
+          descripcion = lisResul.get(0).getCtaDescripcion();
+          break;
+        default:
+          //    
+      }
+        
+    } finally {
+      manager.close();
+    }
+    return descripcion;
+  }
   
 }

@@ -47,15 +47,30 @@ public class Controladora {
     return miPer.getPer_paterno() + " " + miPer.getPer_nombre();
   }
 
-  public Usuario creaUsuPer(String tipDoc, String numDoc, String nomUsu, String patUsu, String matUsu, String aliUsu, String tipUsu, String estUsu, String pasUsu) {
-    Usuario miUsu = null;
+  public String creaUsuPer(String tipDoc, String numDoc, String nomUsu, String patUsu, 
+          String matUsu, String aliUsu, String tipUsu, String estUsu, String pasUsu, 
+          Usuario unUsu) {
+    Usuario miUsu = new Usuario ();
     
-    miUsu = miControl.creaUsuPer(tipDoc, numDoc, nomUsu, patUsu, matUsu, aliUsu, tipUsu, estUsu, pasUsu);
-    return miUsu;
+    String zMensa = miControl.creaUsuPer(tipDoc, numDoc, nomUsu, patUsu, matUsu, aliUsu, 
+            tipUsu, estUsu, pasUsu, miUsu);
+    return zMensa;
   }
 
   public Persona getPersona(String tipoDoc, String numDoc) {
     return miControl.buscaCodPer (tipoDoc, numDoc);
+  }
+
+  public Persona getPersona(Long per_id) {
+    return miControl.getPersona (per_id);
+  }
+
+  public Usuario getUsuario(Long idUsuario) {
+    return miControl.getUsuario (idUsuario);
+  }
+
+  public void elimUsuario(Long idUsuario) {
+    miControl.elimUsuario (idUsuario);
   }
 
 }

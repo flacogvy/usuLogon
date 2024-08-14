@@ -67,7 +67,7 @@ public class UsuarioJpaController implements Serializable {
     }
   }
 
-  public void destroy(int id) throws NonexistentEntityException {
+  public void destroy(Long id) throws NonexistentEntityException {
     EntityManager em = null;
     try {
       em = getEntityManager();
@@ -164,7 +164,7 @@ public class UsuarioJpaController implements Serializable {
 
   }
 
-  List<Usuario> getUsuFiltro(String strFiltro) {
+  public List<Usuario> getUsuFiltro(String strFiltro) {
     EntityManager manager = getEntityManager();
     List<Usuario> lisResul;
     try {
@@ -184,6 +184,46 @@ public class UsuarioJpaController implements Serializable {
     }
       
     return lisResul;
+  }
+
+public  String buscaUsuPer(Long per_id, Usuario usuRes) {
+    String zMensa = "";
+    EntityManager manager = getEntityManager();
+    Usuario mioUsuario = null;
+    List<Usuario> lisResul;
+    try {
+      CriteriaBuilder cb = manager.getCriteriaBuilder(); //Paso 1
+      CriteriaQuery cqry = manager.getCriteriaBuilder().createQuery(); //Paso 1
+      Root<Usuario> root = cqry.from(Usuario.class);
+      cqry.select(root);  //paso 3
+      Predicate pEquPerId = cb.equal(root.get("per_id"), per_id);
+      cqry.where(pEquPerId);
+      
+      Query qry = manager.createQuery(cqry); //Paso 6
+      lisResul = qry.getResultList(); //Paso 6
+      if (lisResul.size() == 1)  {
+        
+        mioUsuario = lisResul.get(0);
+        usuRes.copiar(mioUsuario);
+        
+      } else {
+        if (lisResul.size() == 0 ) {
+          //
+          usuRes = null;
+        }  else {
+          zMensa = "ERR-Hay mas de 1 usuario con el codigo de Persona";
+        }
+      }
+      
+    } finally {
+      manager.close();
+    }
+    
+    /*por alguna razon no se puede hacer usuRes = mioUsuario 
+      por eso se ha creado el metodo copiar en Usuario   */
+    
+    
+    return zMensa;
   }
 
   
