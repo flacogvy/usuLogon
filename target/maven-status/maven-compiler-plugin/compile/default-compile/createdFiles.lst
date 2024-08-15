@@ -12,6 +12,7 @@ persistencia\exceptions\IllegalOrphanException.class
 com\mycompany\usulogon\Pruebas.class
 logica\RegPrincipal.class
 utilesDB\utilFecha\UtlFechas.class
+servlets\SvEditUsuario.class
 logica\Controladora.class
 logica\Usuario_.class
 servlets\SrvUsuarios.class

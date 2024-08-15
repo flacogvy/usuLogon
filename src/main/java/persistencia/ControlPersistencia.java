@@ -7,6 +7,7 @@ import logica.CodTabla;
 import logica.Persona;
 import logica.Usuario;
 import persistencia.exceptions.NonexistentEntityException;
+import utilesDB.utilFecha.UtlFecTime;
 import utilesDB.utilFecha.UtlFechas;
 import utilesDB.utilGen.EncripCad;
 
@@ -16,10 +17,7 @@ public class ControlPersistencia {
   PersonaJpaController controlPersona = new PersonaJpaController();
   CodTablaJpaController controlTablas = new CodTablaJpaController();
 
-  public void adiPersona(Persona miPer, String usuCrea) {
-    miPer.setPer_fehocrea(UtlFechas.getFeHora());
-    miPer.setPer_usucrea(usuCrea);
-    miPer.setPer_modcrea("JAVA");
+  public void adiPersona(Persona miPer) {
     controlPersona.create(miPer);
   }
 
@@ -53,7 +51,7 @@ public class ControlPersistencia {
 
   public String creaUsuPer(String tipDoc, String numDoc, String nomUsu, String patUsu,
           String matUsu, String aliUsu, String tipUsu, String estUsu, String pasUsu,
-          Usuario unUsu) {
+          String modCrea, String usuCrea, Usuario unUsu) {
     String zMensa = "";
     Usuario usuRes = null;
 
@@ -69,8 +67,8 @@ public class ControlPersistencia {
         
         // crear persona y Usuario
         Persona perCre = new Persona(12L, tipDoc, numDoc, nomUsu, patUsu, matUsu,
-                "", "", "ACT", "", "", "", "", "", "", "");
-        adiPersona(perCre, "PRUEBAS");
+                "", "", "ACT", "", UtlFecTime.getFeHora() , usuCrea, modCrea, "", "", "");
+        adiPersona(perCre);
 
         // recuperar porque ya deberia existir
         perTemp = controlPersona.buscaCod(tipDoc, numDoc);
@@ -79,13 +77,15 @@ public class ControlPersistencia {
           //Encriptar el password
           String passDis = EncripCad.encrCadII(pasUsu);
           usuRes = new Usuario(11L, aliUsu, perTemp.getPer_id(), passDis, tipUsu, estUsu,
-                  "", "", "", "", "", "", "");
+                  "", UtlFecTime.getFeHora() ,usuCrea, modCrea, "", "", "");
           
           controlUsuario.create(usuRes);
 
           //Usuario de Salida
           unUsu.copiar(usuRes);
           //unUsu = usuRes;
+          
+          return "EXI-Usuario y Persona Creados con exito";
 
         } else {
         }
@@ -108,9 +108,9 @@ public class ControlPersistencia {
           newUsuario.setUsr_tipo(tipUsu);
           newUsuario.setUsr_estado(estUsu);
           newUsuario.setUsr_ultlogon("");
-          newUsuario.setUsr_fehocrea("");
-          newUsuario.setUsr_usucrea("");
-          newUsuario.setUsr_modcrea("");
+          newUsuario.setUsr_fehocrea(UtlFecTime.getFeHora());
+          newUsuario.setUsr_usucrea(usuCrea);
+          newUsuario.setUsr_modcrea(modCrea);
           newUsuario.setUsr_fehomodi("");
           newUsuario.setUsr_usumodi("");
           newUsuario.setUsr_modmodi("");
@@ -149,6 +149,15 @@ public class ControlPersistencia {
     } catch (NonexistentEntityException ex) {
       Logger.getLogger(ControlPersistencia.class.getName()).log(Level.SEVERE, null, ex);
     }
+  }
+
+  public void modiPersona(Persona perCambio) {
+    try {
+      controlPersona.edit(perCambio);
+    } catch (Exception ex) {
+      Logger.getLogger(ControlPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
   }
 
 }

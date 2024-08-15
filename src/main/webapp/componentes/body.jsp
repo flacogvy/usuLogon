@@ -29,10 +29,11 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-solid fa-user-tie"></i>&nbsp; &nbsp; &nbsp;<%= usuValido %></a>
         
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Salir</a></li>
+          <li><a class="dropdown-item" href="javascript: mandar ();">Salir</a></li>
         </ul>
         
       </li>
@@ -46,7 +47,9 @@
             <div class="sb-sidenav-menu-heading">Acciones</div>
             <form name="frmSalir" action="SrvSalir" method="GET">
             <a class="nav-link" href="javascript: mandar ();">
-              <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+              <div class="sb-nav-link-icon">
+                <i class="fas fa-solid fa-right-from-bracket"></i>
+              </div>
               Salir
             </a>
             </form>

@@ -175,6 +175,7 @@ public class UsuarioJpaController implements Serializable {
       //Predicate pGtCod = cb.eq (root.get("ctaCodigo"), codTabla);
       Predicate pGtAlias = cb.like (root.<String>get("usr_alias"), '%' + strFiltro + '%');
       cqry.where(pGtAlias);
+      cqry.orderBy(cb.asc(root.get("usr_alias")));
       
       Query qry = manager.createQuery(cqry); //Paso 6
       lisResul = qry.getResultList(); //Paso 6

@@ -62,6 +62,9 @@ public class SrvUsuarios extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    
+    String usuarioActivo = (String)request.getSession().getAttribute("usuLogon");
+    
     //ALTA DE USUARIOS******************
     String tipDoc = request.getParameter("cboTipoDoc");
     String numDoc = request.getParameter("txtNumDoc");
@@ -75,7 +78,7 @@ public class SrvUsuarios extends HttpServlet {
     
     Usuario miUsu = null;
     String  zMensa  = miControl.creaUsuPer (tipDoc, numDoc, nomUsu, patUsu, matUsu,
-            aliUsu, tipUsu, estUsu, pasUsu, miUsu);
+            aliUsu, tipUsu, estUsu, pasUsu, "SrvUsuarios", usuarioActivo, miUsu);
     
     HttpSession miSes = request.getSession();
     if (miUsu == null )  {

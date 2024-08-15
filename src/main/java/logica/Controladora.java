@@ -9,7 +9,7 @@ public class Controladora {
   ControlPersistencia miControl = new ControlPersistencia();
 
   public void adiPersona(Persona miPer, String usuCrea) {
-    miControl.adiPersona(miPer, usuCrea);
+    miControl.adiPersona(miPer);
   }
 
   public List<CodTabla> listTabla(String codTabla) {
@@ -48,12 +48,12 @@ public class Controladora {
   }
 
   public String creaUsuPer(String tipDoc, String numDoc, String nomUsu, String patUsu, 
-          String matUsu, String aliUsu, String tipUsu, String estUsu, String pasUsu, 
-          Usuario unUsu) {
+          String matUsu, String aliUsu, String tipUsu, String estUsu, String pasUsu,
+          String modCrea, String usuCrea, Usuario unUsu) {
     Usuario miUsu = new Usuario ();
     
     String zMensa = miControl.creaUsuPer(tipDoc, numDoc, nomUsu, patUsu, matUsu, aliUsu, 
-            tipUsu, estUsu, pasUsu, miUsu);
+            tipUsu, estUsu, pasUsu, modCrea, usuCrea, miUsu);
     return zMensa;
   }
 
@@ -73,4 +73,8 @@ public class Controladora {
     miControl.elimUsuario (idUsuario);
   }
 
+  public void modiPersona(Persona perCambio) {
+    miControl.modiPersona (perCambio);
+  }
+      
 }
